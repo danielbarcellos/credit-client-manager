@@ -1,4 +1,4 @@
-package com.drbsoft.ccm.creditclientmanager;
+package com.drbsoft.ccm;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CreditClientManagerApplicationTests {
+public class CcmApplicationTests {
 
 	@Test
 	public void contextLoads() {
