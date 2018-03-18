@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.drbsoft.ccm.persistence.Client;
 import com.drbsoft.ccm.persistence.ClientRepository;
+import com.drbsoft.ccm.persistence.entity.Client;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -49,15 +49,33 @@ public class ClientRestController {
 		return new ResponseEntity<Client>(client, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Client> update(@RequestBody Client entity) {
-		Client client = this.repository.save(entity);
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Client> update(@PathVariable("id") Long id, @RequestBody Client entity) {
+		Optional<Client> optional = this.repository.findById(id);
+		if(!optional.isPresent()) {
+			return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+		}
+		
+		System.out.println(entity);
+		
+		Client existent = optional.get();
+		existent.setId(id);
+		existent.setName(entity.getName());
+		existent.setLimits(entity.getLimits());
+		existent.setAddress(entity.getAddress());
+		
+		Client client = this.repository.save(existent);
 		return new ResponseEntity<Client>(client, HttpStatus.ACCEPTED);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Client> delete(@RequestBody Client entity) {
-		this.repository.delete(entity);
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Client> delete(@PathVariable("id") Long id) {
+		Optional<Client> optional = this.repository.findById(id);
+		if(!optional.isPresent()) {
+			return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+		}
+		
+		this.repository.deleteById(id);
 		return new ResponseEntity<Client>(HttpStatus.OK);
 	}
 }

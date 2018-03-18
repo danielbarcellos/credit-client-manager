@@ -1,12 +1,12 @@
-package com.drbsoft.ccm.controller;
+package com.drbsoft.ccm.integration;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isA;
 import static org.junit.Assert.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -23,11 +23,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.drbsoft.ccm.CcmApplication;
-import com.drbsoft.ccm.persistence.Client;
+import com.drbsoft.ccm.persistence.entity.Client;
 /**
  * 
- * Este é um teste de integração que visa avaliar o endpoint /api/clientes como
- * um recurso restful da entidade cliente.
+ * Este é um teste de integração que visa avaliar o endpoint <pre>/api/clientes</pre> como
+ * um recurso restful da entidade {@link Client}.
  * 
  * @author Daniel
  *
@@ -35,10 +35,11 @@ import com.drbsoft.ccm.persistence.Client;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { CcmApplication.class })
 @WebAppConfiguration
-public class ClientRestControllerTest extends AbstractRestControllerTest {
+public class ClientIntegrationTest extends AbstractIntegrationTest {
+
+	private static final String URI = "/api/clientes";
 
 	private static final String CLIENT_NAME = "Pedro";
-	private static final String URI = "/api/clientes";
 
 	@Before
 	public void setUp() throws Exception {
@@ -60,8 +61,7 @@ public class ClientRestControllerTest extends AbstractRestControllerTest {
 	 */
 	@Test
 	public void shouldGetByIdWhenClientsIsSaved() throws Exception {
-		Client in = new Client();
-		in.setName(CLIENT_NAME);
+		Client in = buildClient();
 
 		String carrinhoAsJson = json(in);
 
@@ -91,8 +91,7 @@ public class ClientRestControllerTest extends AbstractRestControllerTest {
 	 */
 	@Test
 	public void shouldSaveWhenAClientIsCreated() throws Exception {
-		Client in = new Client();
-		in.setName(CLIENT_NAME);
+		Client in = buildClient();
 		
 		String carrinhoAsJson = json(in);
 		
@@ -118,8 +117,7 @@ public class ClientRestControllerTest extends AbstractRestControllerTest {
 	 */
 	@Test
 	public void shouldUpdateWhenAClientIsCreated() throws Exception {
-		Client in = new Client();
-		in.setName(CLIENT_NAME);;
+		Client in = buildClient();
 		
 		String carrinhoAsJson1 = json(in);
 		
@@ -139,12 +137,12 @@ public class ClientRestControllerTest extends AbstractRestControllerTest {
 		assertThat(in.getName(), is(equalTo(out.getName())));
 		
 		String newName = "Catarina";
-		out.setName(newName); // Altera o nome para Rachel...
+		out.setName(newName); // Altera o nome...
 		
 		String carrinhoAsJson2 = json(out);
 		
 		this.mockMvc
-			.perform(put(URI)
+			.perform(put(URI + "/" + out.getId())
             .contentType(contentType)
             .content(carrinhoAsJson2))
             .andExpect(status().isAccepted())
@@ -158,7 +156,7 @@ public class ClientRestControllerTest extends AbstractRestControllerTest {
 	 */
 	@Test
 	public void shouldRemoveWhenAClientIsCreated() throws Exception {
-		Client in = new Client();
+		Client in = buildClient();
 		in.setName(CLIENT_NAME);
 		
 		String carrinhoAsJson1 = json(in);
@@ -181,7 +179,7 @@ public class ClientRestControllerTest extends AbstractRestControllerTest {
 		String carrinhoAsJson2 = json(out);
 		
 		this.mockMvc
-			.perform(delete(URI)
+			.perform(delete(URI + "/" + out.getId())
             .contentType(contentType)
             .content(carrinhoAsJson2))
             .andExpect(status().isOk());
@@ -192,5 +190,11 @@ public class ClientRestControllerTest extends AbstractRestControllerTest {
 		    .andReturn();
 		
 		assertThat(StringUtils.isEmpty(result.getResponse().getContentAsString()), is(equalTo(Boolean.TRUE)));
+	}
+
+	private Client buildClient() {
+		Client client = new Client();
+		client.setName(CLIENT_NAME);
+		return client;
 	}
 }

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAutoConfiguration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"com.drbsoft.ccm.persistence"} )
-@EntityScan(basePackages = {"com.drbsoft.ccm.persistence"})
+@EntityScan(basePackages = {"com.drbsoft.ccm.persistence.entity"})
 @EnableSpringDataWebSupport
 public class JPAConfig {
 }

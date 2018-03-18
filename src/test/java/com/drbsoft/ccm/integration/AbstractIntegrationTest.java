@@ -1,4 +1,4 @@
-package com.drbsoft.ccm.controller;
+package com.drbsoft.ccm.integration;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -15,7 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.drbsoft.ccm.utils.GsonUtils;
 
-public class AbstractRestControllerTest {
+public class AbstractIntegrationTest {
 
 	protected MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));

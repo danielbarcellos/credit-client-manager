@@ -1,25 +1,30 @@
-package com.drbsoft.ccm.persistence;
+package com.drbsoft.ccm.persistence.entity;
+
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
-public class Client {
+public class CreditLine {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	private String name;
+	private BigDecimal value;
 	
-	public Client() {
-	}
+	private String venture;
+	
+	@Transient
+	private String rate;
 
 	public Long getId() {
 		return id;
@@ -29,25 +34,37 @@ public class Client {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public BigDecimal getValue() {
+		return value;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setValue(BigDecimal value) {
+		this.value = value;
 	}
 
+	public String getVenture() {
+		return venture;
+	}
+
+	public void setVenture(String venture) {
+		this.venture = venture;
+	}
+	
+	public String getRate() {
+		return venture != null ? Venture.valueOf(venture).getRate() + "%" : "0%";
+	}
+	
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
 			.append(this.id)
-			.append(this.name)
+			.append(this.venture)
 			.toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Client == false)
+		if (obj instanceof CreditLine == false)
 	      {
 	        return false;
 	      }
@@ -55,11 +72,11 @@ public class Client {
 	      {
 	         return true;
 	      }
-	      final Client otherObject = (Client) obj;
+	      final CreditLine otherObject = (CreditLine) obj;
 
 	      return new EqualsBuilder()
 	         .append(this.id, otherObject.id)
-	         .append(this.name, otherObject.name)
+	         .append(this.venture, otherObject.venture)
 	         .isEquals();
 	}
 	
@@ -67,7 +84,7 @@ public class Client {
 	public String toString() {
 		return new ToStringBuilder(this)
         .append("id", this.id)
-        .append("name", this.name)
+        .append("venture", this.venture)
         .toString();
 	}
 }

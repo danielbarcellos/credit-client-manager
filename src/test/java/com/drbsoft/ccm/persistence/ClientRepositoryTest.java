@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.drbsoft.ccm.persistence.entity.Client;
 /**
  * Teste do repository ClientRepository. 
  * 
