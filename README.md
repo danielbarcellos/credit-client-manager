@@ -22,7 +22,7 @@ Você pode testar se está tudo ok tentando acesso à api de clientes.
 
 > Os testes abaixos todos foram feitos utilizando [HTTPie](https://httpie.org/). Mas não impede de você usar uma ferramenta visual como [Postman](https://www.getpostman.com/) ou [Insomnia](https://insomnia.rest/)
 
-Fazendo para a api de clientes:
+Fazendo uma rquisição para a api de clientes:
 
 ```shell
 http http://localhost:8080/ccm/api/clientes
