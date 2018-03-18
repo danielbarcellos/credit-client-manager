@@ -32,7 +32,7 @@ public class CreditLineRestController {
 	CreditLineService creditLineService;
 
 	@RequestMapping(value = "/{id}/creditAmount", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Amount> getById(@PathVariable("id") Long id, @RequestParam(value = "venture") String venture, 
+	public ResponseEntity<Amount> calculateCreditAmount(@PathVariable("id") Long id, @RequestParam(value = "venture") String venture, 
 			@RequestParam(value = "requestedValue") Double requestedValue,
 			Pageable pageRequest) {
 		
