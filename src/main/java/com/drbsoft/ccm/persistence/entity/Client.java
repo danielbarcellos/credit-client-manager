@@ -10,7 +10,12 @@ import javax.persistence.ManyToOne;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
+/**
+ * O cliente que ira fazer uma linha de credito.
+ * 
+ * @author daniel
+ *
+ */
 @Entity
 public class Client {
 

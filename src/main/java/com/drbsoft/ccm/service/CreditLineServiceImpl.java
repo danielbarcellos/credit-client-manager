@@ -7,7 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.drbsoft.ccm.persistence.entity.Client;
 import com.drbsoft.ccm.persistence.entity.Venture;
-
+/**
+ * Implementa o servico de linha de credito.
+ * 
+ * @author daniel
+ *
+ */
 @Service
 public class CreditLineServiceImpl implements CreditLineService {
 	

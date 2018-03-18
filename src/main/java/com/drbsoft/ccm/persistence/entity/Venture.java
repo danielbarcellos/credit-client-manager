@@ -6,8 +6,8 @@ import com.drbsoft.ccm.service.CreditLineService;
  * Descreve o Risco (<i>Venture</i>) do negocio como um tipo comum. Para cada tipo existe uma taxa (<i>rate</i>) especifica.
  * <ul>
  * <li>A - Nao aplica taxa de juros;</li>
- * <li>B - Aplica taxacao de 10%<li/>
- * <li>C - Aplica taxacao de 20%<li/>
+ * <li>B - Aplica taxacao de 10%</li>
+ * <li>C - Aplica taxacao de 20%</li>
  * </ul>
  * <strong>Nota:</strong>
  * Neste caso partilar, os valores de taxa sao definidos como inteiros para serem usados pelo calculador pois este faz a conversao

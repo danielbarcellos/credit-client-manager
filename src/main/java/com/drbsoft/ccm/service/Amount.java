@@ -7,7 +7,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.drbsoft.ccm.persistence.entity.Client;
-
+/**
+ * Pojo usado para "embrulhar" os dados do calculo de juros de cada cliente.
+ * 
+ * @author daniel
+ *
+ */
 public class Amount {
 
 	private BigDecimal requestedValue;

@@ -11,7 +11,12 @@ import javax.persistence.Transient;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
+/**
+ * Esta entidade descreve a linha de credito que cada {@link Client} tem disponivel.
+ * 
+ * @author daniel
+ *
+ */
 @Entity
 public class CreditLine {
 
