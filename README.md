@@ -7,7 +7,7 @@ Esta solução visa disponibilizar uma api para consumo de serviços relativos a
 Para descrever todos os endpoint fo utilizado [Swagger 2](https://swagger.io/).
 
 ## Iniciando
-Clone de [GIT Hub](https://github.com/danielbarcellos/credit-client-manager). É necessário term instalado o [Java 8](www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html):
+Clone de [GIT Hub](https://github.com/danielbarcellos/credit-client-manager). É necessário ter instalado o [Java 8](www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html):
 
 ```
 git clone https://github.com/danielbarcellos/credit-client-manager
